@@ -1,13 +1,29 @@
 <template>
-  <div id="nav">
+  <!-- <div id="nav">
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
-  </div>
+  </div> -->
+  <!-- <div>App.vue</div> -->
   <router-view />
 </template>
 
+<script lang="ts">
+import { defineComponent, onMounted } from "vue";
+import { useStore } from "vuex";
+
+export default defineComponent({
+  name: "App",
+  setup() {
+    const store = useStore();
+    onMounted(() => {
+      store.dispatch("authModule/getProfile");
+    });
+  },
+});
+</script>
+
 <style>
-#app {
+/* #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -26,5 +42,5 @@
 
 #nav a.router-link-exact-active {
   color: #42b983;
-}
+} */
 </style>
